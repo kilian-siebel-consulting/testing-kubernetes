@@ -5,5 +5,8 @@ services:
 
 before_install:
   - docker build -t pwwebdev/testing-kubernetes src/
-  - docker login --email=$DOCKER_HUB_EMAIL --username=$DOCKER_HUB_USERNAME --password=$DOCKER_HUB_PASSWORD
+  - docker login --username=$DOCKER_HUB_USERNAME --password=$
   - docker push pwwebdev/testing-kubernetes
+
+script:
+  - ./deploy.sh $TRAVIS_BUILD_NUMBER
