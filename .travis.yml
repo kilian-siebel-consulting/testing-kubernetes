@@ -24,6 +24,7 @@ before_install:
 - sudo gcloud --quiet config set container/cluster $CLUSTER_NAME
 - sudo gcloud config set compute/zone ${CLOUDSDK_COMPUTE_ZONE}
 - sudo gcloud --quiet container clusters get-credentials $CLUSTER_NAME
+- sudo gcloud --version
 
 script:
 - which kubectl
