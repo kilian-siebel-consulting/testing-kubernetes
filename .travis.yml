@@ -3,6 +3,9 @@ sudo: required
 services:
   - docker
 
+env:
+  - CLOUDSDK_CORE_DISABLE_PROMPTS=1
+
 before_install:
   - export REPO=pwwebdev/testing-kubernetes
   - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
@@ -11,6 +14,11 @@ before_install:
   - docker tag $REPO:$TRAVIS_COMMIT $REPO:$TAG
   - docker tag $REPO:$TRAVIS_COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
   - docker push $REPO
+  - gcloud version
+  - gcloud components update kubectl || true
+  - curl https://sdk.cloud.google.com | bash
+  - bash -l ./gcloud.sh version
+  - bash -l ./gcloud.sh components update kubectl
 
 script:
   - ./deploy.sh $TRAVIS_BUILD_NUMBER
