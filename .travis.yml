@@ -3,6 +3,10 @@ cache:
   directories:
     - "$HOME/google-cloud-sdk/"
 
+notifications:
+  slack: ecdevops:DPJiExj0AfJnu5MaRAwyydLD
+  email: false
+
 services:
 - docker
 
