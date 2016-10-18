@@ -24,8 +24,8 @@ before_install:
 - gcloud --quiet components install kubectl
 #- gcloud auth activate-service-account --key-file credentials.json
 #- gcloud config set project ${GC_PROJECT_NAME}
-#- gcloud --quiet config set container/cluster ${GC_CLUSTER_NAME}
-#- gcloud config set compute/zone ${GC_COMPUTE_ZONE}
+- gcloud config set compute/zone ${GC_COMPUTE_ZONE}
+- gcloud config set container/cluster ${GC_CLUSTER_NAME}
 #- gcloud --quiet container clusters get-credentials ${GC_CLUSTER_NAME}
 
 script:
