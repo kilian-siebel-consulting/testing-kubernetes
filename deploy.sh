@@ -14,6 +14,6 @@ gcloud container clusters get-credentials cluster-1 --zone europe-west1-d --proj
 
 # quick and dirty recreating configmaps
 kubectl delete --namespace=testing-kubernetes configmap nginx-config
-kubectl create --namespace=testing-kubernetes configmap nginx-config --from-file=${K8S_DIR}/../conf/nginx/default.conf
+kubectl create --namespace=testing-kubernetes configmap nginx-config --from-file=${K8S_DIR}/../nginx/default.conf
 
 kubectl apply -f ${TARGET_DIR}
