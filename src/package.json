@@ -1,5 +1,5 @@
 {
-  "name": "hello-world",
+  "name": "testing-kubernetes",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,6 +7,17 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kilian-siebel-consulting/testing-kubernetes.git"
+  },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kilian-siebel-consulting/testing-kubernetes/issues"
+  },
+  "homepage": "https://github.com/kilian-siebel-consulting/testing-kubernetes#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
 }
