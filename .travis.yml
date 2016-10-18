@@ -19,6 +19,11 @@ before_install:
   - docker push $REPO
   - gcloud version
   - gcloud components update kubectl || true
+  - gcloud auth activate-service-account --key-file conf/gke/credentials.json
+  - gcloud config set project $PROJECT_NAME
+  - gcloud --quiet config set container/cluster $CLUSTER_NAME
+  - gcloud config set compute/zone ${CLOUDSDK_COMPUTE_ZONE}
+  - gcloud --quiet container clusters get-credentials $CLUSTER_NAME
 
 script:
   - ./deploy.sh $TRAVIS_BUILD_NUMBER
