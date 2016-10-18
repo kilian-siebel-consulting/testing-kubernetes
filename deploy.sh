@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+echo "TRAVIS_BUILD_NUMBER: ${TRAVIS_BUILD_NUMBER}"
 K8S_DIR=./conf/k8s
 TARGET_DIR=${K8S_DIR}/.generated
 mkdir -p ${TARGET_DIR}
