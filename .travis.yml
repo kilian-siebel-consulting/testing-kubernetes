@@ -18,7 +18,7 @@ before_install:
 - gcloud version
 - sudo gcloud -q components install kubectl || true
 - cat credentials.json
-- gcloud auth activate-service-account --key-file credentials.json
+- sudo gcloud auth activate-service-account --key-file credentials.json
 - gcloud config set project $PROJECT_NAME
 - gcloud --quiet config set container/cluster $CLUSTER_NAME
 - gcloud config set compute/zone ${CLOUDSDK_COMPUTE_ZONE}
