@@ -4,9 +4,10 @@ services:
   - docker
 
 env:
-  PROJECT_NAME: testing-145512
-  CLUSTER_NAME: cluster-1
-  CLOUDSDK_COMPUTE_ZONE: europe-west1-d
+  - PROJECT_NAME=testing-145512
+  - CLUSTER_NAME=cluster-1
+  - CLOUDSDK_COMPUTE_ZONE=europe-west1-d
+  - CLOUDSDK_CORE_DISABLE_PROMPTS=1
 
 before_install:
   - export REPO=pwwebdev/testing-kubernetes
@@ -16,6 +17,8 @@ before_install:
   - docker tag $REPO:$TRAVIS_COMMIT $REPO:$TAG
   - docker tag $REPO:$TRAVIS_COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
   - docker push $REPO
+  - gcloud version
+  - gcloud components update kubectl || true
 
 script:
   - ./deploy.sh $TRAVIS_BUILD_NUMBER
