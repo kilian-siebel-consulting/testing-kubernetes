@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-echo "TRAVIS_BUILD_NUMBER: ${TRAVIS_BUILD_NUMBER}"
+
 K8S_DIR=./conf/k8s
 TARGET_DIR=${K8S_DIR}/.generated
 mkdir -p ${TARGET_DIR}
-export BUILD_NUMBER=${1}
+export BUILD_NUMBER=${TRAVIS_BUILD_NUMBER}
 for f in ./conf/k8s/*.yaml
 do
   envsubst < $f > "${TARGET_DIR}/$(basename $f)"

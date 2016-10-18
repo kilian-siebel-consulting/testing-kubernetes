@@ -38,4 +38,4 @@ before_install:
 - gcloud --quiet container clusters get-credentials ${GC_CLUSTER_NAME}
 
 script:
-- "./deploy.sh $TRAVIS_BUILD_NUMBER"
+- "./deploy.sh
