@@ -7,6 +7,7 @@ metadata:
   namespace: testing-kubernetes
 spec:
   replicas: 1
+  revisionHistoryLimit: 3
   selector:
     matchLabels:
       run: app
