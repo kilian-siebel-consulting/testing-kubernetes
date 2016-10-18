@@ -10,4 +10,5 @@ do
   envsubst < $f > "${TARGET_DIR}/$(basename $f)"
 done
 
+gcloud container clusters get-credentials cluster-1 --zone europe-west1-d --project testing-145512
 kubectl apply -f ${TARGET_DIR}
