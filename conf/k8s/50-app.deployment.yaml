@@ -16,7 +16,20 @@ spec:
         run: app
     spec:
       containers:
+      - image: nginx:1.11
+        name: nginx
+        ports:
+        - name: nginx-http
+          containerPort: 80
+        volumeMounts:
+        - mountPath: /etc/nginx/conf.d
+          name: nginx-config
+          readOnly: true
       - image: pwwebdev/testing-kubernetes:${BUILD_NUMBER}
-        name: app
+        name: hello-world
         ports:
         - containerPort: 3000
+      volumes:
+      - configMap:
+          name: nginx-config
+        name: nginx-config
