@@ -19,7 +19,7 @@ before_install:
 - gcloud version
 - which gcloud
 - sudo /opt/google-cloud-sdk/bin/gcloud version
-- sudo gcloud -q components install kubectl || true
+- sudo gcloud -q components install kubectl
 - cat credentials.json
 - sudo gcloud auth activate-service-account --key-file credentials.json
 - sudo gcloud config set project $PROJECT_NAME
