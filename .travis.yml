@@ -25,4 +25,5 @@ before_install:
 - sudo gcloud --quiet container clusters get-credentials $CLUSTER_NAME
 
 script:
+- which kubectl
 - "./deploy.sh travis-$TRAVIS_BUILD_NUMBER"

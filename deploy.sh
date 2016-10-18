@@ -10,4 +10,4 @@ do
   envsubst < $f > "${TARGET_DIR}/$(basename $f)"
 done
 
-kubectl apply -f ${TARGET_DIR}
+sudo kubectl apply -f ${TARGET_DIR}
