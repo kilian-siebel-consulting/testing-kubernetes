@@ -9,7 +9,7 @@ do
   envsubst < $f > "${TARGET_DIR}/$(basename $f)"
 done
 
-gcloud container clusters get-credentials cluster-1 --zone europe-west1-d --project testing-145512
+gcloud container clusters get-credentials ${GC_CLUSTER_NAME} --zone ${GC_COMPUTE_ZONE} --project ${GC_PROJECT_NAME}
 
 # quick and dirty recreating configmaps
 kubectl delete --namespace=testing-kubernetes configmap nginx-config
