@@ -16,7 +16,7 @@ spec:
         run: app
     spec:
       containers:
-      - image: pwwebdev/testing-kubernetes
+      - image: pwwebdev/testing-kubernetes:${BUILD_NUMBER}
         name: app
         ports:
         - containerPort: 3000
