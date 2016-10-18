@@ -16,9 +16,6 @@ before_install:
   - docker push $REPO
   - gcloud version
   - gcloud components update kubectl || true
-  - curl https://sdk.cloud.google.com | bash
-  - bash -l ./gcloud.sh version
-  - bash -l ./gcloud.sh components update kubectl
 
 script:
   - ./deploy.sh $TRAVIS_BUILD_NUMBER
