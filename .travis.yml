@@ -1,4 +1,7 @@
 sudo: required
+cache:
+  directories:
+    - "$HOME/google-cloud-sdk/"
 
 services:
 - docker
@@ -16,9 +19,12 @@ before_install:
 - docker tag $REPO:$TRAVIS_COMMIT $REPO:$TAG
 - docker tag $REPO:$TRAVIS_COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
 - docker push $REPO
+- gcloud version || true
+- if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf $HOME/google-cloud-sdk; export CLOUDSDK_CORE_DISABLE_PROMPTS=1; curl https://sdk.cloud.google.com | bash; fi
+# Add gcloud to $PATH
+- source /home/travis/google-cloud-sdk/path.bash.inc
 - gcloud version
 - which gcloud
-- sudo /opt/google-cloud-sdk/bin/gcloud version
 - sudo gcloud -q components install kubectl
 - cat credentials.json
 - sudo gcloud auth activate-service-account --key-file credentials.json
