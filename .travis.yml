@@ -3,6 +3,11 @@ sudo: required
 services:
   - docker
 
+env:
+  PROJECT_NAME: testing-145512
+  CLUSTER_NAME: cluster-1
+  CLOUDSDK_COMPUTE_ZONE: europe-west1-d
+
 before_install:
   - export REPO=pwwebdev/testing-kubernetes
   - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
