@@ -22,11 +22,11 @@ before_install:
 - if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf $HOME/google-cloud-sdk; curl https://sdk.cloud.google.com | bash; fi
 - source /home/travis/google-cloud-sdk/path.bash.inc
 - gcloud --quiet components install kubectl
-#- gcloud auth activate-service-account --key-file credentials.json
-#- gcloud config set project ${GC_PROJECT_NAME}
+- gcloud auth activate-service-account --key-file credentials.json
+- gcloud config set project ${GC_PROJECT_NAME}
 - gcloud config set compute/zone ${GC_COMPUTE_ZONE}
 - gcloud config set container/cluster ${GC_CLUSTER_NAME}
-#- gcloud --quiet container clusters get-credentials ${GC_CLUSTER_NAME}
+- gcloud --quiet container clusters get-credentials ${GC_CLUSTER_NAME}
 
 script:
-- "./deploy.sh travis-$TRAVIS_BUILD_NUMBER"
+- "./deploy.sh $TRAVIS_BUILD_NUMBER"
