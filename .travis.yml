@@ -16,6 +16,9 @@ before_install:
   -in conf/azure/kubeconfig.json.enc -out kubeconfig.json -d
 - docker login --username=$DOCKER_HUB_USERNAME --password=$DOCKER_HUB_PASSWORD
 install:
+# use from Docker 1.13, first pull and then build based on a cached docker image
+#- docker pull $REPO:latest || true # > fix for first run
+#- docker build --cache-from=$REPO:latest -t $REPO:$TRAVIS_BUILD_NUMBER src/
 - docker build -t $REPO:$TRAVIS_BUILD_NUMBER src/
 - docker tag $REPO:$TRAVIS_BUILD_NUMBER $REPO:latest
 - docker push $REPO:$TRAVIS_BUILD_NUMBER
