@@ -8,7 +8,7 @@ do
   envsubst < $f > "${TARGET_DIR}/$(basename $f)"
 done
 
-kubectl create --namespace=testing-kubernetes
+kubectl create namespace testing-kubernetes
 # quick and dirty recreating configmaps
 kubectl delete --namespace=testing-kubernetes configmap nginx-config
 kubectl create --namespace=testing-kubernetes configmap nginx-config --from-file=${K8S_DIR}/../nginx/default.conf
