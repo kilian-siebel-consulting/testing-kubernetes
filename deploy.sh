@@ -8,8 +8,7 @@ do
   envsubst < $f > "${TARGET_DIR}/$(basename $f)"
 done
 
-gcloud container clusters get-credentials ${GC_CLUSTER_NAME} --zone ${GC_COMPUTE_ZONE} --project ${GC_PROJECT_NAME}
-
+kubectl create --namespace=testing-kubernetes
 # quick and dirty recreating configmaps
 kubectl delete --namespace=testing-kubernetes configmap nginx-config
 kubectl create --namespace=testing-kubernetes configmap nginx-config --from-file=${K8S_DIR}/../nginx/default.conf
