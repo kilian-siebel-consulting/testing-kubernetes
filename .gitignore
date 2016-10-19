@@ -1,1 +1,4 @@
 node_modules
+
+# ignore generated k8s yml files
+conf/k8s/.generated/
