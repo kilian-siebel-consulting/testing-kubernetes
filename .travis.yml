@@ -2,14 +2,6 @@ sudo: required
 cache:
   directories:
   - "$HOME/google-cloud-sdk/"
-notifications:
-  slack:
-    rooms:
-      - ecdevops:DPJiExj0AfJnu5MaRAwyydLD#notifications
-    on_success: change
-    on_failure: change
-  slack: ecdevops:DPJiExj0AfJnu5MaRAwyydLD
-  email: false
 services:
 - docker
 env:
@@ -21,9 +13,6 @@ before_install:
   -in conf/azure/kubeconfig.json.enc -out kubeconfig.json -d
 - docker login --username=$DOCKER_HUB_USERNAME --password=$DOCKER_HUB_PASSWORD
 install:
-# use from Docker 1.13, first pull and then build based on a cached docker image
-#- docker pull $REPO:latest || true # > fix for first run
-#- docker build --cache-from=$REPO:latest -t $REPO:$TRAVIS_BUILD_NUMBER src/
 - docker build -t $REPO:$TRAVIS_BUILD_NUMBER src/
 - docker tag $REPO:$TRAVIS_BUILD_NUMBER $REPO:latest
 - docker push $REPO:$TRAVIS_BUILD_NUMBER
@@ -34,3 +23,10 @@ install:
 - gcloud --quiet components install kubectl
 script:
 - "./deploy.sh"
+notifications:
+  email: false
+  slack:
+    on_success: change
+    on_failure: change
+    rooms:
+      secure: i7LkrbzojhjPxVjUetTpeS5tDG45CZ/p7jRFbwOzm7YKpOuJhJYNNVudD2NBAzG3HgQIXbIzWdVHVoqhW9/a5nnbtK7wIOoIgycBY5noL1iSDCHcUVzYhbxK3I0YzS2ZP6SWq+u1I562wT3PYOGnakhZuMs0lauAK2ls2hBCho6+XoBzl5Gbwp9drM7pKwBGXgbdq/owsHvSMxdCRxe23ikFbJmXMOnhsLnruqxkfHoIsvNoKCXzuXqhSI7q3QBTkFHdSAmLcDCUDsPQKeRoqBLf5UVFD9e3GRU7+2HXsxWrFaAFo7X6AWo2oTCgAiCk78RTCg9DQtqiUKpRn7v5wZcKZ2c7ZlY+mEXPUItDm6RWaVAwixG5rG72yWd9RwarXnxi3ji8iFM0++FyDN6Ag/lvE7q98NfvYxIeNPIT+qIs8U70hSwjxzF4J3eTRp0qgmG8UvQ5G4JZAPstXpNKf00vD6bjxhoNrTubbspor54w9Ij64neSnZw7ycjZtqfl4x4K3HVsBzR1vx7dEEqFPnqB8/ecuVMqk77HpWMTEefY9GVw9MOS+RJbLVS6N5H89pJC6BZfGhQn9Gwlw4loyQNTUOBEtzEae0+F6M09y8flm4VHFhRQbIykQXct7a+RPWdmhCHtJX2k+/jO+ixKXntjkJiUQEv7uyid4KMm9PY=
