@@ -3,6 +3,11 @@ cache:
   directories:
   - "$HOME/google-cloud-sdk/"
 notifications:
+  slack:
+    rooms:
+      - ecdevops:DPJiExj0AfJnu5MaRAwyydLD#notifications
+    on_success: change
+    on_failure: change
   slack: ecdevops:DPJiExj0AfJnu5MaRAwyydLD
   email: false
 services:
